@@ -12,19 +12,19 @@ switch(n)
         
         %Load files
         %--------------------------------------
-        load('(-1,i).mat') 
+        load('Lab_D2/(-1,i).mat') 
         Data1 = ans;
 
-        load('(-5,3i).mat')
+        load('Lab_D2/(-5,3i).mat')
         Data2 = ans;
 
-        load('(2,-2+i,-2-i).mat')
+        load('Lab_D2/(2,-2+i,-2-i).mat')
         Data3 = ans;
 
-        load('(-2,-5-3i,-5+3i).mat')
+        load('Lab_D2/(-2,-5-3i,-5+3i).mat')
         Data4 = ans;
 
-        load('(-2.5,4i).mat')
+        load('Lab_D2/(-2.5,4i).mat')
         Data5 = ans;
         %--------------------------------------
         
@@ -73,9 +73,9 @@ switch(n)
 
         figure(4)
         plot(Data1(1,1:lowest_common),rad2deg(Data1(6,1:lowest_common)) ... 
-            ,Data(1,1:lowest_common),rad2deg(Data2(6,1:lowest_common)) ... 
-            ,Data(1,1:lowest_common),rad2deg(Data4(6,1:lowest_common)) ... 
-            ,Data(1,1:lowest_common),rad2deg(Data5(6,1:lowest_common)))
+            ,Data1(1,1:lowest_common),rad2deg(Data2(6,1:lowest_common)) ... 
+            ,Data1(1,1:lowest_common),rad2deg(Data4(6,1:lowest_common)) ... 
+            ,Data1(1,1:lowest_common),rad2deg(Data5(6,1:lowest_common)))
         
         title('Elevation')
         xlabel('t')
@@ -87,19 +87,19 @@ switch(n)
     case 2
         %Load files
         %--------------------------------------
-        load('Q(10,10,10)R(10,10).mat') 
+        load('Lab_D2/Q(10,10,10)R(10,10).mat') 
         Data1 = ans;
 
-        load('Q(10,10,5)R(.1,.1).mat')
+        load('Lab_D2/Q(10,10,5)R(.1,.1).mat')
         Data2 = ans;
 
-        load('Q(10,100,100)R(1,1).mat')
+        load('Lab_D2/Q(10,100,100)R(1,1).mat')
         Data3 = ans;
 
-        load('Q(10,50,5)R(.1,.1).mat')
+        load('Lab_D2/Q(10,50,5)R(.1,.1).mat')
         Data4 = ans;
 
-        load('Q(50,10,1)R(.1,.1).mat')
+        load('Lab_D2/Q(50,10,1)R(.1,.1).mat')
         Data5 = ans;
         %--------------------------------------
         
@@ -135,13 +135,13 @@ switch(n)
     case 3
         %Load files
         %--------------------------------------
-        load('Q(50,10,1,1,1)R(.1,.1).mat') 
+        load('Lab_D2/Q(50,10,1,1,1)R(.1,.1).mat') 
         Data1 = ans;
 
-        load('Q(50,10,1,1,10)R(.1,.1).mat')
+        load('Lab_D2/Q(50,10,1,1,10)R(.1,.1).mat')
         Data2 = ans;
 
-        load('Q(50,10,1,1,10)R(.1,.5).mat')
+        load('Lab_D2/Q(50,10,1,1,10)R(.1,.5).mat')
         Data3 = ans;
 
         %--------------------------------------

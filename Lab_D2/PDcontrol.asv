@@ -1,9 +1,0 @@
-Vs0 = 5.48;
-
-Kf = -(l_c*g*m_c - l_h*g*2*m_p)/(l_h*Vs0);
-
-K1 = l_p*Kf/(2*m_p*l_p^2);
-
-
-%pole1 = -5 + 3i;
-pole2 = conj(pole1);
