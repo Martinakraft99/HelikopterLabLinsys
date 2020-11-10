@@ -39,7 +39,7 @@ timestep = 0.002;
 
 function [x_bar, P_bar] = Prediction(x_hat, u, P_hat)
 
-    if(x_bar ~= x_hat && P_bar ~= P_hat)
+    if(x_bar)
 
     x_bar = A_d * x_hat + B_d * u;
 
@@ -47,8 +47,6 @@ function [x_bar, P_bar] = Prediction(x_hat, u, P_hat)
     
     else
         
-        x_bar = x_hat;
-        P_bar = P_hat; 
-        
     end
+
 end

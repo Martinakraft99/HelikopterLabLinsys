@@ -7,13 +7,8 @@ else
 end
 
 %set constants
-Vs0 = 5.48;
 
-Kf = -(l_c*g*m_c - l_h*g*2*m_p)/(l_h*Vs0);
-
-K1 = l_p*Kf/(2*m_p*l_p^2);
-
-K2 = l_h*Kf/(m_c*l_c^2+2*m_p*l_h^2);
+constants
 
 n = input('Chose task (1-3): ');
 switch(n)
