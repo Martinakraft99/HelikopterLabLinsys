@@ -20,4 +20,4 @@ po = 5*[-1; -4; -4+0.2i; -4-0.2i; -0.5];
 L = transpose( place( transpose(Ao), transpose(Co), po) );
 
 % Eigenvectors and -values
-[v, e] = eig(Ao - L*Co)
+% [v, e] = eig(Ao - L*Co);

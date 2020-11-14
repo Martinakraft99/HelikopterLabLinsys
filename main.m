@@ -13,15 +13,14 @@ else
     init_heli_3_10
 end
 
-Vs0 = 5.48;
-fprintf('  setting Vs0 = %f\n', Vs0)
-
-fprintf('  setting Kf, K1, K2 and K3\n')
-
-% Constants:
-Kf = -(l_c*g*m_c - l_h*g*2*m_p)/(l_h*Vs0);
-K1 = l_p*Kf/(2*m_p*l_p^2);
-K2 = l_h*Kf/(m_c*l_c^2+2*m_p*l_h^2);
-K3 = -(l_c*m_c*g -2*l_h*m_p*g)/(m_c*l_c^2+2*m_p*(l_h^2+l_p^2));
-
+fprintf('  setting Vs0, Kf, K1, K2 and K3\n')
+constants;
+fprintf('  setting port number to 10\n')
 PORT = 10;
+fprintf('  setting constants for Integral controller\n')
+LQR_controller;
+fprintf('  setting constants for Luenberger observer\n')
+Luenberger_observer;
+fprintf('  setting constants for Kalman filter\n')
+Kalman_filter;
+

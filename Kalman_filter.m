@@ -33,7 +33,7 @@ timestep = 0.002;
 % Rd_ground = load('Rd_ground.mat')
 % Rd_flying = load('Rd_flying.mat')
 
-R_d = load('Lab_D4/Task 1 - Noise estimate/Rd_flying.mat').R_d
+R_d = load('Lab_D4/Task 1 - Noise estimate/Rd_flying.mat').R_d;
 
 % Covariance of stochastic disturbance
 Q_d = 10e-6*diag([.1; 10; .1; .1; 1; 1;]);
