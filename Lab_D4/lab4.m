@@ -32,7 +32,7 @@ C = [1 0 0 0 0 0;
 
 D = 0;
 
- % Discretization
+% Discretization
 timestep = 0.002;
 [A_d, B_d, C_d, D_d] = ssdata(c2d(ss(A,B,C,D),timestep));
 
