@@ -1,78 +1,60 @@
-%initialize
-heli = input('Chose heli (1-10): ');
-if(heli < 3)
-    init_heli_1_2
-else
-    init_heli_3_10
-end
-
-%set constants
-
-constants
-
-n = input('Chose task (1-3): ');
-switch(n)
-    case 1
-        disp('Task 1, Pole Placement')
+% Task 1, Pole Placement
         
-        A = [0 1 0; 0 0 0; 0 0 0];
-        B = [0 0; 0 K1; K2 0];
-        
-        syms p_1 p_2 p_3;
-        
-        P = [-2; -5 - 3*1i; -5 + 3*1i];
-        
-        K = place(A,B,P)
-          
-        %Runs plotting.m
-        
-        plotting
+% A_c = [0 1 0; 0 0 0; 0 0 0];
+% B_c = [0 0; 0 K1; K2 0];
+% 
+% syms p_1 p_2 p_3;
+% 
+% P = [-2; -5 - 3*1i; -5 + 3*1i];
+% 
+% K = place(A_c, B_c, P)
 
-    case 2
-        disp('Task 2, LQR')
+    
+% Task 2, LQR
 
-        A = [0 1 0; 0 0 0; 0 0 0];
-        B = [0 0; 0 K1; K2 0];
-        
-        Q = diag([50; 10; 1]);
-        
-        R = diag([.1; .5]);
+% A_c = [0 1 0; 0 0 0; 0 0 0];
+% B_c = [0 0; 0 K1; K2 0];
+% 
+% Q = diag([50; 10; 1]);
+% 
+% R = diag([.1; .5]);
+% 
+% K = lqr(A_c, B_c, Q, R)
+% 
+% k_11 = K(1,1); 
+% k_13 = K(1,3); 
+% k_21 = K(2,1); 
+% k_23 = K(2,3); 
+% 
+% 
+% F = [k_11 k_13; k_21 k_23]
 
-        K = lqr(A,B,Q,R)
+% Task 3, LQR augmented system')
 
-        k_11 = K(1,1); 
-        k_13 = K(1,3); 
-        k_21 = K(2,1); 
-        k_23 = K(2,3); 
+A_a = [0  1  0  0  0; 
+       0  0  0  0  0; 
+       0  0  0  0  0; 
+       1  0  0  0  0; 
+       0  0  1  0  0];
+ 
+B_a = [0  0; 
+       0  K1; 
+       K2 0; 
+       0  0; 
+       0  0];
 
+% Cost of changing states
+Q = diag([50; 10; 1; 1; 5]);
 
-        F = [k_11 k_13; k_21 k_23]
-        
-        %Runs plotting.m
-        plotting
+% Cost of changing system input
+R = diag([.1; .5]);
 
-        
-    case 3
-        disp('Task 2, LQR augmented system')
+K = lqr(A_a, B_a, Q, R)
 
-        A = [0 1 0 0 0; 0 0 0 0 0; 0 0 0 0 0; 1 0 0 0 0; 0 0 1 0 0];
-        B = [0 0; 0 K1; K2 0; 0 0; 0 0];
-        
-        Q = diag([50; 10; 1; 1; 5]);
-        
-        R = diag([.1; .5]);
-
-        K = lqr(A,B,Q,R)
-
-        k_11 = K(1,1); 
-        k_13 = K(1,3); 
-        k_21 = K(2,1); 
-        k_23 = K(2,3); 
+k_11 = K(1,1); 
+k_13 = K(1,3); 
+k_21 = K(2,1); 
+k_23 = K(2,3); 
 
 
-        F = [k_11 k_13; k_21 k_23]
-        
-        %Runs plotting.m
-        plotting
-
-end
+F = [k_11 k_13; k_21 k_23]
