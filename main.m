@@ -13,11 +13,13 @@ else
     init_heli_3_10
 end
 
+fprintf('  setting port number to 10\n')
+
+PORT = 10;
+
 fprintf('  setting Vs0, Kf, K1, K2 and K3\n')
 constants;
-fprintf('  setting port number to 10\n')
-PORT = 10;
-fprintf('  setting constants for Integral controller\n')
+fprintf('  setting constants for controller\n')
 LQR_controller;
 fprintf('  setting constants for Luenberger observer\n')
 Luenberger_observer;

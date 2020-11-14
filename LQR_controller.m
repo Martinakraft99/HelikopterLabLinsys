@@ -16,7 +16,7 @@ Q = diag([100; 10; 1;  10;  70]);
 R = diag([.1; .5]);
 
 % LQR gain matrix
-K = lqr(A_,B_,Q,R);
+K = lqr(A_a,B_a,Q,R);
 
 k_11 = K(1,1); 
 k_13 = K(1,3); 
