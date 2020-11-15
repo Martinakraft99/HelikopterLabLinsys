@@ -44,10 +44,21 @@ B_a = [0  0;
        0  0];
 
 % Cost of changing states
-Q = diag([50; 10; 1; 1; 5]);
+%Q = diag([50; 10; 1; 1; 1]);
+%Q = diag([50; 10; 1; 1; 10]);
+% Q = diag([50; 10; 1; 1; 10]);
+% Q = diag([50; 10; 1; 10; 70]);
+Q = diag([100; 10; 1; 10; 10]);
+% Q = diag([100; 10; 1; 10; 70]);
+
 
 % Cost of changing system input
+% R = diag([.1; .1]);
+%R = diag([.1; .1]);
+% R = diag([.1; .5]);
+% R = diag([.1; .5]);
 R = diag([.1; .5]);
+% R = diag([.1; .5]);
 
 K = lqr(A_a, B_a, Q, R)
 
@@ -58,3 +69,4 @@ k_23 = K(2,3);
 
 
 F = [k_11 k_13; k_21 k_23]
+

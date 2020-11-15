@@ -15,7 +15,7 @@ end
 
 fprintf('  setting port number to 10\n')
 
-PORT = 10;
+PORT = 6;
 
 fprintf('  setting Vs0, Kf, K1, K2 and K3\n')
 constants;
@@ -25,4 +25,5 @@ fprintf('  setting constants for Luenberger observer\n')
 Luenberger_observer;
 fprintf('  setting constants for Kalman filter\n')
 Kalman_filter;
+
 

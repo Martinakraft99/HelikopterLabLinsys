@@ -14,3 +14,4 @@ pole2 = conj(pole1);
 
 % long settling-time on medium disturbance:
 %pole1 = -7 + 2i;
+
