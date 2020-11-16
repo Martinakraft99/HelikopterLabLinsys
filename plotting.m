@@ -1,4 +1,4 @@
-%PARAM
+%Encoder
 %1  -   time           [s]       
 %2  -   travel         [rad]
 %3  -   travel rate    [rad/s]
@@ -7,170 +7,412 @@
 %6  -   elevation      [rad]
 %7  -   elevation rate [rad/s] 
 
-switch(n)
-    case 1
-        
-        %Load files
-        %--------------------------------------
-        load('Lab_D2/(-1,i).mat') 
-        Data1 = ans;
 
-        load('Lab_D2/(-5,3i).mat')
-        Data2 = ans;
+enc_t = 1;                  
+enc_tra = 2;         
+enc_tra_dot = 3;    
+enc_p = 4;         
+enc_p_dot = 5;     
+enc_e = 6;      
+enc_e_dot = 7;
 
-        load('Lab_D2/(2,-2+i,-2-i).mat')
-        Data3 = ans;
+ref_t = 1;
+ref_p = 2;
+ref_e_dot = 3;
 
-        load('Lab_D2/(-2,-5-3i,-5+3i).mat')
-        Data4 = ans;
-
-        load('Lab_D2/(-2.5,4i).mat')
-        Data5 = ans;
-        %--------------------------------------
-        
-        lowest_common = 3648;
-
-        figure
-        plot(Data1(1,1:lowest_common),rad2deg(Data1(4,1:lowest_common)) ...
-            ,Data1(1,1:lowest_common),rad2deg(Data2(4,1:lowest_common)) ...
-            ,Data1(1,1:lowest_common),rad2deg(Data3(4,1:lowest_common))  ...
-            ,Data1(1,1:lowest_common),rad2deg(Data4(4,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data5(4,1:lowest_common)))
-        
-        title('Pitch')
-        xlabel('t')
-        ylabel('deg')
-        legend('(-1,i)','(-5,3i)','(2,-2±i)','(-2,-5±3i)','((-2.5,4i))');
-        grid on;
-
-
-        figure(2)
-        plot(Data1(1,1:lowest_common),rad2deg(Data1(6,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data2(6,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data3(6,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data4(6,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data5(6,1:lowest_common)))
-        
-        title('Elevation')
-        xlabel('t')
-        ylabel('deg')
-        legend('(-1,i)','(-5,3i)','(2,-2±i)','(-2,-5±3i)','((-2.5,4i))');
-        grid on;
-
-
-        figure(3)
-        plot(Data1(1,1:lowest_common),rad2deg(Data1(4,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data2(4,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data4(4,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data5(4,1:lowest_common)))
-        
-        title('Pitch')
-        xlabel('t')
-        ylabel('deg')
-        legend('(-1,i)','(-5,3i)','(-2,-5±3i)','((-2.5,4i))');
-        grid on;
-
-
-        figure(4)
-        plot(Data1(1,1:lowest_common),rad2deg(Data1(6,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data2(6,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data4(6,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data5(6,1:lowest_common)))
-        
-        title('Elevation')
-        xlabel('t')
-        ylabel('deg')
-        legend('(-1,i)','(-5,3i)','(-2,-5±3i)','((-2.5,4i))');
-        grid on;
-
-        
+day = input('Enter Day: ');
+switch(day)
     case 2
-        %Load files
-        %--------------------------------------
-        load('Lab_D2/Q(10,10,10)R(10,10).mat') 
-        Data1 = ans;
+        n = input('Enter task: ');
+    switch(n)
+        case 1
+            display('Pole Placement')
+            var = input('Just elevation, pitch or both? (1/2/3): ');
+            switch(var)
+                
+                case 1
+                    load('Lab_D2/Task_2_Pole _placement/-1,i/e/input.mat') 
+                    input1 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-1,i/e/ref.mat') 
+                    ref1 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-1,i/e/x_enc.mat') 
+                    x_enc1 = ans;
+                    
+%                     load('Lab_D2/Task_2_Pole _placement/-2,-10+3i/e/input.mat') 
+%                     input2 = ans;
+%                     load('Lab_D2/Task_2_Pole _placement/-2,-10+3i/e/ref.mat') 
+%                     ref2 = ans;
+%                     load('Lab_D2/Task_2_Pole _placement/-2,-10+3i/e/x_enc.mat') 
+%                     x_enc2 = ans;
+                    
+                    load('Lab_D2/Task_2_Pole _placement/-2,-2+i/e/input.mat') 
+                    input3 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-2,-2+i/e/ref.mat') 
+                    ref3 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-2,-2+i/e/x_enc.mat') 
+                    x_enc3 = ans;
+                    
+                    load('Lab_D2/Task_2_Pole _placement/-2,-5+3i/e/input.mat') 
+                    input4 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-2,-5+3i/e/ref.mat') 
+                    ref4 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-2,-5+3i/e/x_enc.mat') 
+                    x_enc4 = ans;
+                    
+%                     load('Lab_D2/Task_2_Pole _placement/-2.5,4i/e/input.mat') 
+%                     input5 = ans;
+%                     load('Lab_D2/Task_2_Pole _placement/-2.5,4i/e/ref.mat') 
+%                     ref5 = ans;
+%                     load('Lab_D2/Task_2_Pole _placement/-2.5,4i/e/x_enc.mat') 
+%                     x_enc5 = ans;
+%                     
+%                     load('Lab_D2/Task_2_Pole _placement/-5,3i/e/input.mat') 
+%                     input6 = ans;
+%                     load('Lab_D2/Task_2_Pole _placement/-5,3i/e/ref.mat') 
+%                     ref6 = ans;
+%                     load('Lab_D2/Task_2_Pole _placement/-5,3i/e/x_enc.mat') 
+%                     x_enc6 = ans;
+                    
+                    display('Files Loaded')
+                    
+                    data_size1 = 8880;
+                    data_size3 = 4303;
+                    data_size4 = 14641;
 
-        load('Lab_D2/Q(10,10,5)R(.1,.1).mat')
-        Data2 = ans;
+                    
+                    
+                    figure
+                    plot(input4(ref_t,1:data_size4),rad2deg(ref4(ref_e_dot,1:data_size4)) ...
+                    ,x_enc1(enc_t,1:data_size1),rad2deg(x_enc1(enc_e_dot,1:data_size1)) ...
+                    ,x_enc3(enc_t,1:data_size3),rad2deg(x_enc3(enc_e_dot,1:data_size3)) ...
+                    ,x_enc4(enc_t,1:data_size4),rad2deg(x_enc4(enc_e_dot,1:data_size4)));
+                    title('Elevation')
+                    xlabel('t')
+                    ylabel('deg')
+                    legend('reference','(-1,i)','(2,-2±i)','(-2,-5±3i)');
+                    grid on;
 
-        load('Lab_D2/Q(10,100,100)R(1,1).mat')
-        Data3 = ans;
+                
+                case 2
+                    load('Lab_D2/Task_2_Pole _placement/-1,i/p/input.mat') 
+                    input1 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-1,i/p/ref.mat') 
+                    ref1 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-1,i/p/x_enc.mat') 
+                    x_enc1 = ans;
+                    
+                    load('Lab_D2/Task_2_Pole _placement/-2,-10+3i/p/input.mat') 
+                    input2 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-2,-10+3i/p/ref.mat') 
+                    ref2 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-2,-10+3i/p/x_enc.mat') 
+                    x_enc2 = ans;
+                    
+                    load('Lab_D2/Task_2_Pole _placement/-2,-2+i/p/input.mat') 
+                    input3 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-2,-2+i/p/ref.mat') 
+                    ref3 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-2,-2+i/p/x_enc.mat') 
+                    x_enc3 = ans;
+                    
+                    load('Lab_D2/Task_2_Pole _placement/-2,-5+3i/p/input.mat') 
+                    input4 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-2,-5+3i/p/ref.mat') 
+                    ref4 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-2,-5+3i/p/x_enc.mat') 
+                    x_enc4 = ans;
+                    
+%                     load('Lab_D2/Task_2_Pole _placement/-2.5,4i/p/input.mat') 
+%                     input5 = ans;
+%                     load('Lab_D2/Task_2_Pole _placement/-2.5,4i/p/ref.mat') 
+%                     ref5 = ans;
+%                     load('Lab_D2/Task_2_Pole _placement/-2.5,4i/p/x_enc.mat') 
+%                     x_enc5 = ans;
+%                     
+%                     load('Lab_D2/Task_2_Pole _placement/-5,3i/p/input.mat') 
+%                     input6 = ans;
+%                     load('Lab_D2/Task_2_Pole _placement/-5,3i/p/ref.mat') 
+%                     ref6 = ans;
+%                     load('Lab_D2/Task_2_Pole _placement/-5,3i/p/x_enc.mat') 
+%                     x_enc6 = ans;
 
-        load('Lab_D2/Q(10,50,5)R(.1,.1).mat')
-        Data4 = ans;
+                    display('Files Loaded')
+                    
+                    data_size1 = 5217;
+                    data_size2 = 5654;
+                    data_size3 = 3636;
+                    data_size4 = 14085;
+                    
+                    
+                    figure
+                    plot(input4(ref_t,1:data_size4),rad2deg(ref4(ref_p,1:data_size4)) ...
+                    ,x_enc1(enc_t,1:data_size1),rad2deg(x_enc1(enc_p,1:data_size1)) ...
+                    ,x_enc2(enc_t,1:data_size2),rad2deg(x_enc2(enc_p,1:data_size2)) ...
+                    ,x_enc3(enc_t,1:data_size3),rad2deg(x_enc3(enc_p,1:data_size3)) ...
+                    ,x_enc4(enc_t,1:data_size4),rad2deg(x_enc4(enc_p,1:data_size4)));
+                    title('Pitch')
+                    xlabel('t')
+                    ylabel('deg')
+                    legend('reference','(-1,i)','(-2,-10±3i)','(2,-2±i)','(-2,-5±3i)');
+                    grid on;
+                    
+                
+                case 3
+                    load('Lab_D2/Task_2_Pole _placement/-1,i/ep/input.mat') 
+                    input1 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-1,i/ep/ref.mat') 
+                    ref1 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-1,i/ep/x_enc.mat') 
+                    x_enc1 = ans;
+                    
+                    load('Lab_D2/Task_2_Pole _placement/-2,-10+3i/ep/input.mat') 
+                    input2 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-2,-10+3i/ep/ref.mat') 
+                    ref2 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-2,-10+3i/ep/x_enc.mat') 
+                    x_enc2 = ans;
+                    
+                    load('Lab_D2/Task_2_Pole _placement/-2,-2+i/ep/input.mat') 
+                    input3 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-2,-2+i/ep/ref.mat') 
+                    ref3 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-2,-2+i/ep/x_enc.mat') 
+                    x_enc3 = ans;
+                    
+                    load('Lab_D2/Task_2_Pole _placement/-2,-5+3i/ep/input.mat') 
+                    input4 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-2,-5+3i/ep/ref.mat') 
+                    ref4 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-2,-5+3i/ep/x_enc.mat') 
+                    x_enc4 = ans;
+                    
+                    load('Lab_D2/Task_2_Pole _placement/-2.5,4i/ep/input.mat') 
+                    input5 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-2.5,4i/ep/ref.mat') 
+                    ref5 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-2.5,4i/ep/x_enc.mat') 
+                    x_enc5 = ans;
+                    
+                    load('Lab_D2/Task_2_Pole _placement/-5,3i/ep/input.mat') 
+                    input6 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-5,3i/ep/ref.mat') 
+                    ref6 = ans;
+                    load('Lab_D2/Task_2_Pole _placement/-5,3i/ep/x_enc.mat') 
+                    x_enc6 = ans;
+                    
+                    
+                    display('Files Loaded')
+                    
+                    data_size1 = 4053;
+                    data_size2 = 10612;
+                    data_size3 = 4231;
+                    data_size4 = 11222;
+                    data_size5 = 4201;
+                    data_size6 = 4251;
+                    
+                    figure
+                    plot(input4(ref_t,1:data_size4),rad2deg(ref4(ref_p,1:data_size4)) ...
+                    ,x_enc1(enc_t,1:data_size1),rad2deg(x_enc1(enc_p,1:data_size1)) ...
+                    ,x_enc2(enc_t,1:data_size2),rad2deg(x_enc2(enc_p,1:data_size2)) ...
+                    ,x_enc3(enc_t,1:data_size3),rad2deg(x_enc3(enc_p,1:data_size3)) ...
+                    ,x_enc4(enc_t,1:data_size4),rad2deg(x_enc4(enc_p,1:data_size4)) ...
+                    ,x_enc5(enc_t,1:data_size5),rad2deg(x_enc5(enc_p,1:data_size5)) ...
+                    ,x_enc6(enc_t,1:data_size6),rad2deg(x_enc6(enc_p,1:data_size6)));
+                    title('Pitch')
+                    xlabel('t')
+                    ylabel('deg')
+                    legend('reference','(-1,i)','(-2,-10±3i)','(2,-2±i)','(-2,-5±3i)',('-2.5,±4i'),('-5,±3i'));
+                    grid on;
+                    
+                    figure(2)
+                    plot(input4(ref_t,1:data_size4),rad2deg(ref4(ref_e_dot,1:data_size4)) ...
+                    ,x_enc1(enc_t,1:data_size1),rad2deg(x_enc1(enc_e_dot,1:data_size1)) ...
+                    ,x_enc2(enc_t,1:data_size2),rad2deg(x_enc2(enc_e_dot,1:data_size2)) ...
+                    ,x_enc3(enc_t,1:data_size3),rad2deg(x_enc3(enc_e_dot,1:data_size3)) ...
+                    ,x_enc4(enc_t,1:data_size4),rad2deg(x_enc4(enc_e_dot,1:data_size4)) ...
+                    ,x_enc5(enc_t,1:data_size5),rad2deg(x_enc5(enc_e_dot,1:data_size5)) ...
+                    ,x_enc6(enc_t,1:data_size6),rad2deg(x_enc6(enc_e_dot,1:data_size6)));
+                    title('Elevation')
+                    xlabel('t')
+                    ylabel('deg')
+                    legend('reference','(-1,i)','(-2,-10±3i)','(2,-2±i)','(-2,-5±3i)',('-2.5,±4i'),('-5,±3i'));
+                    grid on;
 
-        load('Lab_D2/Q(50,10,1)R(.1,.1).mat')
-        Data5 = ans;
-        %--------------------------------------
-        
-        lowest_common = 3648;
-        
-        figure
-        plot(Data1(1,1:lowest_common),rad2deg(Data1(4,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data2(4,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data3(4,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data4(4,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data5(4,1:lowest_common)))
-        
-        title('Pitch')
-        xlabel('t')
-        ylabel('deg')
-        legend('Q(10,10,10)R(10,10)','Q(10,10,5)R(.1,.1)','Q(10,100,100)R(1,1)','Q(10,50,5)R(.1,.1)','Q(50,10,1)R(.1,.1)');
-        grid on;
-        
-        figure(2)
-        plot(Data1(1,1:lowest_common),rad2deg(Data1(6,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data2(6,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data3(6,1:lowest_common)) ...
-            ,Data1(1,1:lowest_common),rad2deg(Data4(6,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data5(6,1:lowest_common)))
-        
-        title('Elevation')
-        xlabel('t')
-        ylabel('deg')
-        legend('Q(10,10,10)R(10,10)','Q(10,10,5)R(.1,.1)','Q(10,100,100)R(1,1)','Q(10,50,5)R(.1,.1)','Q(50,10,1)R(.1,.1)');
-        grid on;
-        
+                    
+                    
+            end
+        case 2
+            display('LQR')
+            
+            load('Lab_D2/Task_3_LQR/Q(10,10,10)R(10,10)/input.mat') 
+            input1 = ans;
+            load('Lab_D2/Task_3_LQR/Q(10,10,10)R(10,10)/ref.mat') 
+            ref1 = ans;
+            load('Lab_D2/Task_3_LQR/Q(10,10,10)R(10,10)/x_enc.mat') 
+            x_enc1 = ans;
 
-    case 3
-        %Load files
-        %--------------------------------------
-        load('Lab_D2/Q(50,10,1,1,1)R(.1,.1).mat') 
-        Data1 = ans;
+            load('Lab_D2/Task_3_LQR/Q(10,10,5)R(.1,.1)/input.mat') 
+            input2 = ans;
+            load('Lab_D2/Task_3_LQR/Q(10,10,5)R(.1,.1)/ref.mat') 
+            ref2 = ans;
+            load('Lab_D2/Task_3_LQR/Q(10,10,5)R(.1,.1)/x_enc.mat') 
+            x_enc2 = ans;
 
-        load('Lab_D2/Q(50,10,1,1,10)R(.1,.1).mat')
-        Data2 = ans;
+            load('Lab_D2/Task_3_LQR/Q(10,100,100)R(1,.1)/input.mat') 
+            input3 = ans;
+            load('Lab_D2/Task_3_LQR/Q(10,100,100)R(1,.1)/ref.mat') 
+            ref3 = ans;
+            load('Lab_D2/Task_3_LQR/Q(10,100,100)R(1,.1)/x_enc.mat') 
+            x_enc3 = ans;
 
-        load('Lab_D2/Q(50,10,1,1,10)R(.1,.5).mat')
-        Data3 = ans;
+            load('Lab_D2/Task_3_LQR/Q(10,50,5)R(.1,.1)/input.mat') 
+            input4 = ans;
+            load('Lab_D2/Task_3_LQR/Q(10,50,5)R(.1,.1)/ref.mat') 
+            ref4 = ans;
+            load('Lab_D2/Task_3_LQR/Q(10,50,5)R(.1,.1)/x_enc.mat') 
+            x_enc4 = ans;
 
-        %--------------------------------------
-        
-        
-        lowest_common = 3648;
-        
-        figure
-        plot(Data1(1,1:lowest_common),rad2deg(Data1(4,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data2(4,1:lowest_common)) ... 
-            ,Data1(1,1:lowest_common),rad2deg(Data3(4,1:lowest_common)))
-        
-        title('Pitch')
-        xlabel('t')
-        ylabel('deg')
-        legend('Q(50,10,1,1,1)R(.1,.1)','Q(50,10,1,1,10)R(.1,.1)','Q(50,10,1,1,10)R(.1,.5)');
-        grid on;
-        
-        figure(2)
-        plot(Data1(1,1:lowest_common),rad2deg(Data1(6,1:lowest_common)) ...
-            ,Data1(1,1:lowest_common),rad2deg(Data2(6,1:lowest_common)) ...
-            ,Data1(1,1:lowest_common),rad2deg(Data3(6,1:lowest_common)))
-        
-        title('Elevation')
-        xlabel('t')
-        ylabel('deg')
-        legend('Q(50,10,1,1,1)R(.1,.1)','Q(50,10,1,1,10)R(.1,.1)','Q(50,10,1,1,10)R(.1,.5)');
-        grid on;
-      
+            load('Lab_D2/Task_3_LQR/Q(50,10,1)R(.1,.1)/input.mat') 
+            input5 = ans;
+            load('Lab_D2/Task_3_LQR/Q(50,10,1)R(.1,.1)/ref.mat') 
+            ref5 = ans;
+            load('Lab_D2/Task_3_LQR/Q(50,10,1)R(.1,.1)/x_enc.mat') 
+            x_enc5 = ans;
+
+            load('Lab_D2/Task_3_LQR/Q(50,100,100)R(.1,.1)/input.mat') 
+            input6 = ans;
+            load('Lab_D2/Task_3_LQR/Q(50,100,100)R(.1,.1)/ref.mat') 
+            ref6 = ans;
+            load('Lab_D2/Task_3_LQR/Q(50,100,100)R(.1,.1)/x_enc.mat') 
+            x_enc6 = ans;
+            
+            data_size1 = 10054;
+            data_size2 = 11285;
+            data_size3 = 8335;
+            data_size4 = 8991;
+            data_size5 = 11122;
+            data_size6 = 8284;
+            
+            figure
+            plot(input4(ref_t,1:data_size4),rad2deg(ref4(ref_p,1:data_size4)) ...
+            ,x_enc1(enc_t,1:data_size1),rad2deg(x_enc1(enc_p,1:data_size1)) ...
+            ,x_enc2(enc_t,1:data_size2),rad2deg(x_enc2(enc_p,1:data_size2)) ...
+            ,x_enc3(enc_t,1:data_size3),rad2deg(x_enc3(enc_p,1:data_size3)) ...
+            ,x_enc4(enc_t,1:data_size4),rad2deg(x_enc4(enc_p,1:data_size4)) ...
+            ,x_enc5(enc_t,1:data_size5),rad2deg(x_enc5(enc_p,1:data_size5)) ...
+            ,x_enc6(enc_t,1:data_size6),rad2deg(x_enc6(enc_p,1:data_size6)));
+            title('Pitch')
+            xlabel('t')
+            ylabel('deg')
+            legend('reference','Q(10,10,10)R(10,10)','Q(10,10,5)R(.1,.1)'...
+                ,'Q(10,100,100)R(1,.1)','Q(10,50,5)R(.1,.1)'...
+                ,'Q(50,10,1)R(.1,.1)','Q(50,100,100)R(.1,.1)');
+            grid on;
+
+            figure(2)
+            plot(input4(ref_t,1:data_size4),rad2deg(ref4(ref_e_dot,1:data_size4)) ...
+            ,x_enc1(enc_t,1:data_size1),rad2deg(x_enc1(enc_e_dot,1:data_size1)) ...
+            ,x_enc2(enc_t,1:data_size2),rad2deg(x_enc2(enc_e_dot,1:data_size2)) ...
+            ,x_enc3(enc_t,1:data_size3),rad2deg(x_enc3(enc_e_dot,1:data_size3)) ...
+            ,x_enc4(enc_t,1:data_size4),rad2deg(x_enc4(enc_e_dot,1:data_size4)) ...
+            ,x_enc5(enc_t,1:data_size5),rad2deg(x_enc5(enc_e_dot,1:data_size5)) ...
+            ,x_enc6(enc_t,1:data_size6),rad2deg(x_enc6(enc_e_dot,1:data_size6)));
+            title('Elevation')
+            xlabel('t')
+            ylabel('deg')
+            legend('reference','Q(10,10,10)R(10,10)','Q(10,10,5)R(.1,.1)'...
+                ,'Q(10,100,100)R(1,.1)','Q(10,50,5)R(.1,.1)'...
+                ,'Q(50,10,1)R(.1,.1)','Q(50,100,100)R(.1,.1)');            
+            grid on;
+            
+        case 3
+            display('LQR with integral')
+            
+            load('Lab_D2/Task_3_LQR_with_integral/Q(100,10,1,10,10)R(.1,.5)/input.mat') 
+            input1 = ans;
+            load('Lab_D2/Task_3_LQR_with_integral/Q(100,10,1,10,10)R(.1,.5)/ref.mat') 
+            ref1 = ans;
+            load('Lab_D2/Task_3_LQR_with_integral/Q(100,10,1,10,10)R(.1,.5)/x_enc.mat') 
+            x_enc1 = ans;
+
+            load('Lab_D2/Task_3_LQR_with_integral/Q(100,10,1,10,70)R(.1,.5)/input.mat') 
+            input2 = ans;
+            load('Lab_D2/Task_3_LQR_with_integral/Q(100,10,1,10,70)R(.1,.5)/ref.mat') 
+            ref2 = ans;
+            load('Lab_D2/Task_3_LQR_with_integral/Q(100,10,1,10,70)R(.1,.5)/x_enc.mat') 
+            x_enc2 = ans;
+
+            load('Lab_D2/Task_3_LQR_with_integral/Q(50,10,1,1,1)R(.1,.1)/input.mat') 
+            input3 = ans;
+            load('Lab_D2/Task_3_LQR_with_integral/Q(50,10,1,1,1)R(.1,.1)/ref.mat') 
+            ref3 = ans;
+            load('Lab_D2/Task_3_LQR_with_integral/Q(50,10,1,1,1)R(.1,.1)/x_enc.mat') 
+            x_enc3 = ans;
+
+            load('Lab_D2/Task_3_LQR_with_integral/Q(50,10,1,1,1)R(.1,.5)/input.mat') 
+            input4 = ans;
+            load('Lab_D2/Task_3_LQR_with_integral/Q(50,10,1,1,1)R(.1,.5)/ref.mat') 
+            ref4 = ans;
+            load('Lab_D2/Task_3_LQR_with_integral/Q(50,10,1,1,1)R(.1,.5)/x_enc.mat') 
+            x_enc4 = ans;
+
+            load('Lab_D2/Task_3_LQR_with_integral/Q(50,10,1,1,10)R(.1,.1)/input.mat') 
+            input5 = ans;
+            load('Lab_D2/Task_3_LQR_with_integral/Q(50,10,1,1,10)R(.1,.1)/ref.mat') 
+            ref5 = ans;
+            load('Lab_D2/Task_3_LQR_with_integral/Q(50,10,1,1,10)R(.1,.1)/x_enc.mat') 
+            x_enc5 = ans;
+
+            load('Lab_D2/Task_3_LQR_with_integral/Q(50,10,1,10,70)R(.1,.5)/input.mat') 
+            input6 = ans;
+            load('Lab_D2/Task_3_LQR_with_integral/Q(50,10,1,10,70)R(.1,.5)/ref.mat') 
+            ref6 = ans;
+            load('Lab_D2/Task_3_LQR_with_integral/Q(50,10,1,10,70)R(.1,.5)/x_enc.mat') 
+            x_enc6 = ans;
+            
+            data_size1 = 7865;
+            data_size2 = 8114;
+            data_size3 = 7873;
+            data_size4 = 7864;
+            data_size5 = 7842;
+            data_size6 = 7362;
+            
+            figure
+            plot(input4(ref_t,1:data_size4),rad2deg(ref4(ref_p,1:data_size4)) ...
+            ,x_enc1(enc_t,1:data_size1),rad2deg(x_enc1(enc_p,1:data_size1)) ...
+            ,x_enc2(enc_t,1:data_size2),rad2deg(x_enc2(enc_p,1:data_size2)) ...
+            ,x_enc3(enc_t,1:data_size3),rad2deg(x_enc3(enc_p,1:data_size3)) ...
+            ,x_enc4(enc_t,1:data_size4),rad2deg(x_enc4(enc_p,1:data_size4)) ...
+            ,x_enc5(enc_t,1:data_size5),rad2deg(x_enc5(enc_p,1:data_size5)) ...
+            ,x_enc6(enc_t,1:data_size6),rad2deg(x_enc6(enc_p,1:data_size6)));
+            title('Pitch')
+            xlabel('t')
+            ylabel('deg')
+            legend('reference','Q(100,10,1,10,10)R(.1,.5)'...
+                ,'Q(100,10,1,10,70)R(.1,.5)'...
+                ,'Q(50,10,1,1,1)R(.1,.1)','Q(50,10,1,1,1)R(.1,.5)'...
+                ,'Q(50,10,1,1,10)R(.1,.1)','Q(50,10,1,10,70)R(.1,.5)');
+            grid on;
+
+            figure(2)
+            plot(input4(ref_t,1:data_size4),rad2deg(ref4(ref_e_dot,1:data_size4)) ...
+            ,x_enc1(enc_t,1:data_size1),rad2deg(x_enc1(enc_e_dot,1:data_size1)) ...
+            ,x_enc2(enc_t,1:data_size2),rad2deg(x_enc2(enc_e_dot,1:data_size2)) ...
+            ,x_enc3(enc_t,1:data_size3),rad2deg(x_enc3(enc_e_dot,1:data_size3)) ...
+            ,x_enc4(enc_t,1:data_size4),rad2deg(x_enc4(enc_e_dot,1:data_size4)) ...
+            ,x_enc5(enc_t,1:data_size5),rad2deg(x_enc5(enc_e_dot,1:data_size5)) ...
+            ,x_enc6(enc_t,1:data_size6),rad2deg(x_enc6(enc_e_dot,1:data_size6)));
+            title('Elevation')
+            xlabel('t')
+            ylabel('deg')
+            legend('reference','Q(100,10,1,10,10)R(.1,.5)'...
+                ,'Q(100,10,1,10,70)R(.1,.5)'...
+                ,'Q(50,10,1,1,1)R(.1,.1)','Q(50,10,1,1,1)R(.1,.5)'...
+                ,'Q(50,10,1,1,10)R(.1,.1)','Q(50,10,1,10,70)R(.1,.5)');           
+            grid on;
+            
+       
+    end
 end
-    
+
 
