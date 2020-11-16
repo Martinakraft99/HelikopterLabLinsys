@@ -7,7 +7,13 @@
 % Task 3 - PD control
 % Experimental poles
 
-pole1 = -5 + 3i;
+% pole1 = -7 + 1i;
+% pole1 = -1 + 1i;
+% pole1 = -2.5 + 4i;
+% pole1 = -5 + 3i;
+% pole1 = -5 + 2i;
+% pole1 = -5 + 1.5i;
+
 pole2 = conj(pole1);
 
 % we need a minimum of 1-2 in imaginary part

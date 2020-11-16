@@ -9,7 +9,7 @@ B_c = [0  0;
        K2 0];
 
 % Cost of changing states
-%Q = diag([10; 10; 5]);
+Q = diag([10; 10; 5]);
 %Q = diag([10; 10; 10]);
 %Q = diag([10; 50; 5]);
 %Q = diag([10; 100; 100]);
@@ -18,8 +18,8 @@ B_c = [0  0;
 
 
 % Cost of changing system input
-%R = diag([.1; .1]);
-%R = diag([10; 10]);
+R = diag([.1; .1]);
+% R = diag([10; 10]);
 %R = diag([.1; .1]);
 %R = diag([1; 1]);
 %R = diag([.1; .1]);
