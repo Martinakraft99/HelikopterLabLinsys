@@ -15,7 +15,7 @@ end
 
 fprintf('  setting port number to 10\n')
 
-PORT = 6;
+PORT = 10;
 
 fprintf('  setting Vs0, Kf, K1, K2 and K3\n')
 constants;
