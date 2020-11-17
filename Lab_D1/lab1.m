@@ -12,7 +12,16 @@
 % pole1 = -2.5 + 4i;
 % pole1 = -5 + 3i;
 % pole1 = -5 + 2i;
+% pole1 = -5 + 1.5i;
+
+%new tests
+ 
+% pole1 = -5 + 3i;
+% pole1 = -5 + 2i;
 pole1 = -5 + 1.5i;
+% pole1 = -5 + .5i;
+% pole1 = -7 + 1.5i;
+% pole1 = -3 + 1.5i;
 
 pole2 = conj(pole1);
 

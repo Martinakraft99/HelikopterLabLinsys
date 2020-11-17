@@ -8,23 +8,31 @@ B_c = [0  0;
        0  K1; 
        K2 0];
 
+% Q = diag([10; 100; 100]);
+   
 % Cost of changing states
-Q = diag([10; 10; 5]);
-%Q = diag([10; 10; 10]);
-%Q = diag([10; 50; 5]);
-%Q = diag([10; 100; 100]);
-%Q = diag([50; 10; 1]);
-%Q = diag([50; 100; 100]);
+% Q = diag([10; 10; 5]);
+% Q = diag([10; 10; 10]);
+% VERY MUCH ALIKE WITH NUMBER ONE , DO NOT INCLUDE BOTH THE ONE ABOVE
+% Q = diag([10; 50; 5]);
+% Q = diag([50; 10; 5]);
+% Q = diag([50; 10; 50]);
+% Q = diag([50; 10; 150]);
+% Q = diag([100; 10; 150]);
+Q = diag([100; 10; 150]);
 
+
+
+% R = diag([1; 1]);
 
 % Cost of changing system input
-R = diag([.1; .1]);
-% R = diag([10; 10]);
-%R = diag([.1; .1]);
-%R = diag([1; 1]);
-%R = diag([.1; .1]);
-%R = diag([.1; .1]);
-
+% R = diag([.1; .1]);
+% R = diag([.1; .1]);
+% R = diag([.1; .1]);
+% R = diag([.1; .1]);
+% R = diag([.1; .1]);
+% R = diag([.1; .1]);
+R = diag([.08; .1]);
 
 K = lqr(A_c, B_c, Q, R)
 
