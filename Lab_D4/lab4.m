@@ -36,6 +36,8 @@ D = 0;
 timestep = 0.002;
 [A_d, B_d, C_d, D_d] = ssdata(c2d(ss(A,B,C,D),timestep));
 
+eigs(A_d)
+
 
 % Task 4
 % Covariance of stochastic disturbance

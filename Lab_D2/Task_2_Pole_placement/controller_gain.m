@@ -19,3 +19,11 @@ P = [-3; -3 - 3i; -3 + 3i];
 
 % Controller gain matrix
 K = place(A_c, B_c, P)
+
+k_11 = K(1,1); 
+k_13 = K(1,3); 
+k_21 = K(2,1); 
+k_23 = K(2,3); 
+
+
+F = [k_11 k_13; k_21 k_23]
